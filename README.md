@@ -1,15 +1,36 @@
 <div align="center">
-​<!-- HEADER BANNER -->
-<img src="https://capsule-render.vercel.app/api?type=waving&color=auto&height=250&section=header&text=Hi%20there,%20I'm%20Phieeny!%20👋&fontSize=42&fontColor=ffffff&animation=twinkling" width="100%" />
-​<!-- TYPING ANIMATION -->
-<a href="https://git.io/typing-svg">
-<img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=24&pause=1000&color=36BCF7&center=true&vCenter=true&width=500&lines=Full-Stack+Developer;Passionate+Software+Engineer;Open+Source+Contributor;Always+Learning+%26+Building+✨" alt="Typing SVG" />
-</a>
-​<p align="center">
-<a href="#-about-me">About Me</a> •
-<a href="#-tech-stack">Tech Stack</a> •
-<a href="#-github-stats">GitHub Stats</a> •
-<a href="#-contact-me">Contact Me</a>
-</p>
-​</div>
-​💫 About Me
+
+# ✦ PHIEENY
+
+### Creative Developer · Digital Artist · Curious Mind
+
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff4fd8,50:8b5cff,100:35d8ff&height=180&section=header&text=Welcome%20to%20my%20space&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38" width="100%"/>
+
+<br>
+
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/)
+[![Portfolio](https://img.shields.io/badge/Interactive%20Cat-Visit-ff4fd8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/)
+[![Profile Views](https://komarev.com/ghpvc/?username=YOUR-USERNAME&style=for-the-badge&color=8b5cff)](https://github.com/YOUR-USERNAME)
+
+</div>
+
+---
+
+## ✦ About Me
+
+Hi! I'm **Phieeny** 👋
+
+I'm someone who enjoys combining **technology, creativity and visual design**.
+
+I like building things that are not only functional, but also have their own personality.
+
+```text
+╭──────────────────────────────────────────────╮
+│                                              │
+│   ✦ Creating                                │
+│   ✦ Experimenting                           │
+│   ✦ Learning                                │
+│   ✦ Designing                               │
+│   ✦ Building small weird things             │
+│                                              │
+╰──────────────────────────────────────────────╯
