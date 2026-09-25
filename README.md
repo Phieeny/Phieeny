@@ -8,9 +8,9 @@
 
 <br>
 
-[![GitHub](https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/)
-[![Portfolio](https://img.shields.io/badge/Interactive%20Cat-Visit-ff4fd8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://YOUR-USERNAME.github.io/YOUR-REPOSITORY/)
-[![Profile Views](https://komarev.com/ghpvc/?username=YOUR-USERNAME&style=for-the-badge&color=8b5cff)](https://github.com/YOUR-USERNAME)
+[![GitHub](https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Phieeny)
+[![Portfolio](https://img.shields.io/badge/Interactive%20Cat-Visit-ff4fd8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://phieeny.github.io/Phieeny/)
+[![Profile Views](https://komarev.com/ghpvc/?username=Phieeny&style=for-the-badge&color=8b5cff)](https://github.com/Phieeny)
 
 </div>
 
@@ -26,9 +26,8 @@ I like building things that are not only functional, but also have their own per
 
 ```text
 ╭
-                                              
    ✦ Creating                                
    ✦ Experimenting                           
    ✦ Learning                                
    ✦ Designing                               
-   ✦ Building small weird things             
+   ✦ Building small weird things
