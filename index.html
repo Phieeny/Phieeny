@@ -3,23 +3,90 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sắp Ra Mắt</title>
+    <title>Horror Experience</title>
     <style>
-        body { font-family: system-ui, -apple-system, sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh; margin: 0; text-align: center; }
-        h1 { font-size: 3rem; margin-bottom: 1rem; }
-        p { font-size: 1.2rem; opacity: 0.9; max-width: 500px; margin-bottom: 2rem; }
-        .subscribe-form { display: flex; gap: 10px; width: 90%; max-width: 400px; }
-        input { flex: 1; padding: 12px 16px; border-radius: 6px; border: none; outline: none; font-size: 1rem; }
-        button { padding: 12px 20px; background-color: #ff758c; color: white; border: none; border-radius: 6px; font-weight: bold; cursor: pointer; }
-        button:hover { background-color: #ff758c; opacity: 0.9; }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            background-color: #050505;
+            color: #8b0000;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+            text-align: center;
+        }
+        .container {
+            border: 2px solid #8b0000;
+            padding: 30px;
+            box-shadow: 0 0 20px #8b0000;
+            background: rgba(0, 0, 0, 0.9);
+            max-width: 90%;
+        }
+        h1 {
+            font-size: 2.5rem;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            animation: flicker 1.5s infinite alternate;
+        }
+        p { color: #aaa; margin: 20px 0; font-size: 1rem; }
+        button {
+            background: #8b0000;
+            color: #fff;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: bold;
+            cursor: pointer;
+            letter-spacing: 2px;
+            box-shadow: 0 0 10px #ff0000;
+            transition: 0.3s;
+        }
+        button:hover { background: #ff0000; box-shadow: 0 0 20px #ff0000; }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.2; }
+        }
     </style>
 </head>
 <body>
-    <h1>Trang Web Sắp Ra Mắt</h1>
-    <p>Chúng tôi đang tích cực hoàn thiện dự án. Hãy để lại email để nhận thông báo mới nhất!</p>
-    <form class="subscribe-form" onsubmit="event.preventDefault(); alert('Cảm ơn bạn đã đăng ký!');">
-        <input type="email" placeholder="Nhập email của bạn..." required>
-        <button type="submit">Gửi</button>
-    </form>
+    <div class="container">
+        <h1>BẠN CÓ DÁM?</h1>
+        <p>Bật âm thanh thiết bị và nhấn nút bên dưới...</p>
+        <button onclick="playHorrorSound()">BẮT ĐẦU</button>
+    </div>
+
+    <script>
+        function playHorrorSound() {
+            const ctx = new (window.AudioContext || window.webkitAudioContext)();
+            
+            // Âm nền u uất (Drone Sound)
+            const osc1 = ctx.createOscillator();
+            const gain1 = ctx.createGain();
+            osc1.type = 'sawtooth';
+            osc1.frequency.setValueAtTime(55, ctx.currentTime); // Tần số trầm A1
+            gain1.gain.setValueAtTime(0.3, ctx.currentTime);
+            osc1.connect(gain1);
+            gain1.connect(ctx.destination);
+            osc1.start();
+
+            // Âm thanh giật gân (Screech Sound)
+            const osc2 = ctx.createOscillator();
+            const gain2 = ctx.createGain();
+            osc2.type = 'sine';
+            osc2.frequency.setValueAtTime(800, ctx.currentTime);
+            osc2.frequency.exponentialRampToValueAtTime(100, ctx.currentTime + 1.5);
+            gain2.gain.setValueAtTime(0.5, ctx.currentTime);
+            gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 1.5);
+            osc2.connect(gain2);
+            gain2.connect(ctx.destination);
+            osc2.start();
+
+            // Hiệu ứng giật màn hình
+            document.body.style.backgroundColor = '#8b0000';
+            setTimeout(() => { document.body.style.backgroundColor = '#050505'; }, 100);
+        }
+    </script>
 </body>
 </html>
