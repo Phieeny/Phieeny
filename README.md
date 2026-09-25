@@ -9,8 +9,15 @@
 <br>
 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Phieeny)
-[![Portfolio](https://img.shields.io/badge/Interactive%20Cat-Visit-ff4fd8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://phieeny.github.io/Phieeny/)
+[![Horror Tape](https://img.shields.io/badge/Horror%20Tape-Visit-ff4fd8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://phieeny.github.io/Phieeny/)
 [![Profile Views](https://img.shields.io/badge/PROFILE_VIEWS-3%2C478%2C281-8b5cff?style=for-the-badge)](https://github.com/Phieeny)
+
+<br><br>
+
+<!-- ⌨️ Typing Animation Effect -->
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=35D8FF&center=true&vCenter=true&width=600&lines=Coding+with+creativity...+%E2%9C%A8;Building+unique+digital+experiences...;Welcome+to+my+horror+%26+creative+universe!;" alt="Typing SVG" />
+</a>
 
 </div>
 
