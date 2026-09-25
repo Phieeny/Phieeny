@@ -4,7 +4,7 @@
 
 ### Creative Developer · Digital Artist · Curious Mind
 
-<img src="[https://capsule-render.vercel.app/api?type=waving&color=0:ff4fd8,50:8b5cff,100:35d8ff&height=180&section=header&text=Welcome%20to%20my%20space&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38](https://capsule-render.vercel.app/api?type=waving&color=0:ff4fd8,50:8b5cff,100:35d8ff&height=180&section=header&text=Welcome%20to%20my%20space&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38)" width="100%"/>
+<img src="https://capsule-render.vercel.app/api?type=waving&color=0:ff4fd8,50:8b5cff,100:35d8ff&height=180&section=header&text=Welcome%20to%20my%20space&fontSize=38&fontColor=ffffff&animation=fadeIn&fontAlignY=38" width="100%"/>
 
 <br>
 
@@ -14,8 +14,8 @@
 
 <br><br>
 
-<a href="[https://git.io/typing-svg](https://git.io/typing-svg)">
-  <img src="[https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1000&color=35D8FF&center=true&vCenter=true&width=350&lines=Coding+with+creativity...+%E2%9C%A8;Building+unique+experiences...;Welcome+to+my+horror+space](https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1000&color=35D8FF&center=true&vCenter=true&width=350&lines=Coding+with+creativity...+%E2%9C%A8;Building+unique+experiences...;Welcome+to+my+horror+space)!;" alt="Typing SVG" />
+<a href="https://git.io/typing-svg">
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1000&color=35D8FF&center=true&vCenter=true&width=350&lines=Coding+with+creativity...+%E2%9C%A8;Building+unique+experiences...;Welcome+to+my+horror+space!;" alt="Typing SVG" />
 </a>
 
 </div>
