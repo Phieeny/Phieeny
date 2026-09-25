@@ -14,9 +14,8 @@
 
 <br><br>
 
-<!-- ⌨️ Typing Animation Effect -->
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=22&pause=1000&color=35D8FF&center=true&vCenter=true&width=600&lines=Coding+with+creativity...+%E2%9C%A8;Building+unique+digital+experiences...;Welcome+to+my+horror+%26+creative+universe!;" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Fira+Code&weight=600&size=18&pause=1000&color=35D8FF&center=true&vCenter=true&width=350&lines=Coding+with+creativity...+%E2%9C%A8;Building+unique+experiences...;Welcome+to+my+horror+space!;" alt="Typing SVG" />
 </a>
 
 </div>
