@@ -19,28 +19,30 @@
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
+            height: 100vh;
+            width: 100vw;
             overflow: hidden;
+            position: relative;
         }
 
-        /* Khung màn hình VHS full màn hình */
+        /* Khung màn hình TV chứa video */
         .tv-container {
             position: relative;
-            width: 100vw;
-            height: 100vh;
-            background: #000;
+            width: 100%;
+            height: 100%;
             display: flex;
             align-items: center;
             justify-content: center;
+            background: #000;
         }
 
         video {
             width: 100%;
-            height: 100%;
+            max-height: 80vh;
             object-fit: contain;
         }
 
-        /* Hiệu ứng chớp tắt nhiễu sóng màn hình */
+        /* Hiệu ứng chớp nhiễu màn hình khi đổi video */
         .glitch-overlay {
             position: absolute;
             top: 0;
@@ -52,112 +54,134 @@
             pointer-events: none;
             mix-blend-mode: difference;
             transition: opacity 0.05s ease;
-            z-index: 5;
+            z-index: 20;
         }
 
-        /* Nhãn hiển thị góc màn hình */
+        /* Nhãn TAPE hiển thị góc trên */
         .vhs-info {
             position: absolute;
-            top: 20px;
+            top: 25px;
             left: 20px;
             color: #ff4fd8;
             text-shadow: 2px 2px #35d8ff;
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
             letter-spacing: 2px;
-            z-index: 10;
+            z-index: 30;
             pointer-events: none;
         }
 
-        /* Bảng nút bấm ở góc dưới */
+        /* Bảng nút bấm cố định dưới đáy màn hình */
         .controls {
-            position: absolute;
-            bottom: 30px;
+            position: fixed;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
             display: flex;
-            gap: 15px;
-            z-index: 10;
+            gap: 12px;
+            z-index: 40;
+            width: 90%;
+            max-width: 400px;
+            justify-content: center;
         }
 
         .vhs-btn {
-            background: rgba(17, 24, 39, 0.85);
+            flex: 1;
+            background: rgba(17, 24, 39, 0.9);
             color: #ff4fd8;
             border: 2px solid #ff4fd8;
-            padding: 12px 24px;
+            padding: 12px 10px;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             font-weight: bold;
             cursor: pointer;
-            border-radius: 5px;
-            box-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
-            backdrop-filter: blur(5px);
-            transition: all 0.2s ease;
+            border-radius: 6px;
+            box-shadow: 0 0 12px rgba(255, 79, 216, 0.5);
+            backdrop-filter: blur(8px);
+            text-align: center;
+            white-space: nowrap;
         }
 
-        .vhs-btn:hover {
+        .vhs-btn:active {
             background: #ff4fd8;
             color: #fff;
-            box-shadow: 0 0 20px rgba(255, 79, 216, 0.8);
-            transform: scale(1.05);
+            transform: scale(0.95);
         }
     </style>
 </head>
-<body>
+<body onclick="unlockAudio()">
 
     <div class="tv-container">
-        <!-- Video mặc định phát video cũ (video.mp4) -->
-        <video id="vhsVideo" src="video.mp4" autoplay loop muted playsinline></video>
+        <!-- Video phát -->
+        <video id="vhsVideo" src="video.mp4" autoplay loop playsinline></video>
         
-        <!-- Màn hình nhiễu sóng giật lag khi chuyển bài -->
+        <!-- Màn hình giật nhiễu -->
         <div class="glitch-overlay" id="glitch"></div>
         
-        <!-- Tên băng VHS -->
+        <!-- Chữ góc trên -->
         <div class="vhs-info" id="tapeLabel">PLAYING: TAPE #1</div>
-
-        <!-- Bảng nút chuyển bài -->
-        <div class="controls">
-            <button class="vhs-btn" onclick="changeTape(-1)">◀ PREV TAPE</button>
-            <button class="vhs-btn" onclick="changeTape(1)">NEXT TAPE ▶</button>
-        </div>
     </div>
 
-    <!-- File âm thanh hù dọa khi bấm chuyển băng -->
+    <!-- Nút bấm cố định dưới màn hình -->
+    <div class="controls">
+        <button class="vhs-btn" onclick="changeTape(-1, event)">◀ PREV TAPE</button>
+        <button class="vhs-btn" onclick="changeTape(1, event)">NEXT TAPE ▶</button>
+    </div>
+
+    <!-- Âm thanh hù dọa -->
     <audio id="scareSound" src="scare.mp3" preload="auto"></audio>
 
     <script>
-        // 📜 Danh sách 4 video: video cũ + 3 video mới
+        // Danh sách các video trong repository của bạn
         const playlist = [
-            "video.mp4",  // Tape 1: Video cũ của bạn
+            "video.mp4",  // Tape 1: Video cũ
             "video2.mp4", // Tape 2: Video mới 1
             "video3.mp4", // Tape 3: Video mới 2
             "video4.mp4"  // Tape 4: Video mới 3
         ];
         
         let currentIndex = 0;
+        let audioUnlocked = false;
 
         const video = document.getElementById('vhsVideo');
         const glitch = document.getElementById('glitch');
         const label = document.getElementById('tapeLabel');
         const scareSound = document.getElementById('scareSound');
 
-        function changeTape(direction) {
-            // 1. Phát tiếng hét / hù dọa
-            scareSound.currentTime = 0;
-            scareSound.play().catch(e => console.log("Cần chạm tương tác màn hình trước để phát tiếng"));
+        // Mở khóa âm thanh trên trình duyệt di động khi người dùng chạm màn hình
+        function unlockAudio() {
+            if (!audioUnlocked) {
+                video.muted = false;
+                scareSound.play().then(() => {
+                    scareSound.pause();
+                    scareSound.currentTime = 0;
+                }).catch(() => {});
+                audioUnlocked = true;
+            }
+        }
 
-            // 2. Tạo hiệu ứng nhiễu sóng
+        function changeTape(direction, event) {
+            if (event) event.stopPropagation(); // Ngăn sự kiện chạm trùng
+            
+            // 1. Phát tiếng hét
+            scareSound.currentTime = 0;
+            scareSound.play().catch(() => {});
+
+            // 2. Tạo hiệu ứng chớp màn hình
             glitch.style.opacity = "1";
             setTimeout(() => {
                 glitch.style.opacity = "0";
-            }, 150);
+            }, 120);
 
             // 3. Tính toán video tiếp theo
             currentIndex += direction;
             if (currentIndex < 0) currentIndex = playlist.length - 1;
             if (currentIndex >= playlist.length) currentIndex = 0;
 
-            // 4. Chuyển video và đổi nhãn TAPE
+            // 4. Đổi video và đảm bảo bật tiếng
             setTimeout(() => {
                 video.src = playlist[currentIndex];
+                video.muted = false;
                 video.play();
                 label.innerText = `PLAYING: TAPE #${currentIndex + 1}`;
             }, 80);
