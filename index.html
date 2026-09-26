@@ -3,110 +3,166 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Analogue Horror Experience</title>
+    <title>VHS Horror Player - Phieeny</title>
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             background-color: #000;
             color: #fff;
-            font-family: monospace;
-            height: 100vh;
+            font-family: 'Courier New', Courier, monospace;
             display: flex;
-            justify-content: center;
+            flex-direction: column;
             align-items: center;
+            justify-content: center;
+            min-height: 100vh;
             overflow: hidden;
         }
 
-        /* Khung chứa màn hình VHS */
-        .vhs-container {
+        /* Khung màn hình VHS full màn hình */
+        .tv-container {
             position: relative;
             width: 100vw;
             height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
-        /* Video gốc hiển thị toàn màn hình */
         video {
-            max-width: 100%;
-            max-height: 100%;
+            width: 100%;
+            height: 100%;
             object-fit: contain;
-            filter: contrast(120%) brightness(90%);
         }
 
-        /* Lớp phủ đường quét CRT tạo hiệu ứng VHS */
-        .scanlines {
+        /* Hiệu ứng chớp tắt nhiễu sóng màn hình */
+        .glitch-overlay {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(
-                rgba(18, 16, 16, 0) 50%, 
-                rgba(0, 0, 0, 0.3) 50%
-            );
-            background-size: 100% 4px;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.9);
+            opacity: 0;
             pointer-events: none;
+            mix-blend-mode: difference;
+            transition: opacity 0.05s ease;
             z-index: 5;
         }
 
-        /* Màn hình chờ bắt đầu */
-        .overlay {
+        /* Nhãn hiển thị góc màn hình */
+        .vhs-info {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.95);
+            top: 20px;
+            left: 20px;
+            color: #ff4fd8;
+            text-shadow: 2px 2px #35d8ff;
+            font-size: 1.2rem;
+            font-weight: bold;
+            letter-spacing: 2px;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        /* Bảng nút bấm ở góc dưới */
+        .controls {
+            position: absolute;
+            bottom: 30px;
             display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
+            gap: 15px;
             z-index: 10;
         }
 
-        .start-btn {
-            padding: 15px 30px;
-            background: transparent;
-            color: #ff3333;
-            border: 2px solid #ff3333;
-            font-size: 1.2rem;
+        .vhs-btn {
+            background: rgba(17, 24, 39, 0.85);
+            color: #ff4fd8;
+            border: 2px solid #ff4fd8;
+            padding: 12px 24px;
             font-family: inherit;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            font-weight: bold;
             cursor: pointer;
-            box-shadow: 0 0 10px #ff3333;
-            transition: 0.3s;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(255, 79, 216, 0.4);
+            backdrop-filter: blur(5px);
+            transition: all 0.2s ease;
         }
 
-        .start-btn:hover {
-            background: #ff3333;
-            color: #000;
-            box-shadow: 0 0 20px #ff3333;
+        .vhs-btn:hover {
+            background: #ff4fd8;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(255, 79, 216, 0.8);
+            transform: scale(1.05);
         }
     </style>
 </head>
 <body>
 
-    <div class="vhs-container">
-        <div class="scanlines"></div>
+    <div class="tv-container">
+        <!-- Video mặc định phát video cũ (video.mp4) -->
+        <video id="vhsVideo" src="video.mp4" autoplay loop muted playsinline></video>
+        
+        <!-- Màn hình nhiễu sóng giật lag khi chuyển bài -->
+        <div class="glitch-overlay" id="glitch"></div>
+        
+        <!-- Tên băng VHS -->
+        <div class="vhs-info" id="tapeLabel">PLAYING: TAPE #1</div>
 
-        <!-- Màn hình chờ bấm nút để phát (Bắt buộc vì trình duyệt chặn tự phát âm thanh) -->
-        <div class="overlay" id="overlay">
-            <button class="start-btn" onclick="playVideo()">PLAY TAPE</button>
+        <!-- Bảng nút chuyển bài -->
+        <div class="controls">
+            <button class="vhs-btn" onclick="changeTape(-1)">◀ PREV TAPE</button>
+            <button class="vhs-btn" onclick="changeTape(1)">NEXT TAPE ▶</button>
         </div>
-
-        <!-- Thay link video.mp4 của bạn vào thuộc tính src dưới đây -->
-        <video id="horrorVideo" loop playsinline>
-            <source src="video.mp4" type="video/mp4">
-            Trình duyệt của bạn không hỗ trợ thẻ video.
-        </video>
     </div>
 
+    <!-- File âm thanh hù dọa khi bấm chuyển băng -->
+    <audio id="scareSound" src="scare.mp3" preload="auto"></audio>
+
     <script>
-        function playVideo() {
-            const video = document.getElementById('horrorVideo');
-            const overlay = document.getElementById('overlay');
-            
-            // Ẩn màn hình chờ và phát video
-            overlay.style.display = 'none';
-            video.play();
+        // 📜 Danh sách 4 video: video cũ + 3 video mới
+        const playlist = [
+            "video.mp4",  // Tape 1: Video cũ của bạn
+            "video2.mp4", // Tape 2: Video mới 1
+            "video3.mp4", // Tape 3: Video mới 2
+            "video4.mp4"  // Tape 4: Video mới 3
+        ];
+        
+        let currentIndex = 0;
+
+        const video = document.getElementById('vhsVideo');
+        const glitch = document.getElementById('glitch');
+        const label = document.getElementById('tapeLabel');
+        const scareSound = document.getElementById('scareSound');
+
+        function changeTape(direction) {
+            // 1. Phát tiếng hét / hù dọa
+            scareSound.currentTime = 0;
+            scareSound.play().catch(e => console.log("Cần chạm tương tác màn hình trước để phát tiếng"));
+
+            // 2. Tạo hiệu ứng nhiễu sóng
+            glitch.style.opacity = "1";
+            setTimeout(() => {
+                glitch.style.opacity = "0";
+            }, 150);
+
+            // 3. Tính toán video tiếp theo
+            currentIndex += direction;
+            if (currentIndex < 0) currentIndex = playlist.length - 1;
+            if (currentIndex >= playlist.length) currentIndex = 0;
+
+            // 4. Chuyển video và đổi nhãn TAPE
+            setTimeout(() => {
+                video.src = playlist[currentIndex];
+                video.play();
+                label.innerText = `PLAYING: TAPE #${currentIndex + 1}`;
+            }, 80);
         }
     </script>
+
 </body>
 </html>
