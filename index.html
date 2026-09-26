@@ -57,20 +57,6 @@
             z-index: 20;
         }
 
-        /* Nhãn TAPE hiển thị góc trên */
-        .vhs-info {
-            position: absolute;
-            top: 25px;
-            left: 20px;
-            color: #ff4fd8;
-            text-shadow: 2px 2px #35d8ff;
-            font-size: 1.1rem;
-            font-weight: bold;
-            letter-spacing: 2px;
-            z-index: 30;
-            pointer-events: none;
-        }
-
         /* Bảng nút bấm cố định dưới đáy màn hình */
         .controls {
             position: fixed;
@@ -117,9 +103,6 @@
         
         <!-- Màn hình giật nhiễu -->
         <div class="glitch-overlay" id="glitch"></div>
-        
-        <!-- Chữ góc trên -->
-        <div class="vhs-info" id="tapeLabel">PLAYING: TAPE #1</div>
     </div>
 
     <!-- Nút bấm cố định dưới màn hình -->
@@ -145,7 +128,6 @@
 
         const video = document.getElementById('vhsVideo');
         const glitch = document.getElementById('glitch');
-        const label = document.getElementById('tapeLabel');
         const scareSound = document.getElementById('scareSound');
 
         // Mở khóa âm thanh trên trình duyệt di động khi người dùng chạm màn hình
@@ -161,7 +143,7 @@
         }
 
         function changeTape(direction, event) {
-            if (event) event.stopPropagation(); // Ngăn sự kiện chạm trùng
+            if (event) event.stopPropagation();
             
             // 1. Phát tiếng hét
             scareSound.currentTime = 0;
@@ -178,12 +160,11 @@
             if (currentIndex < 0) currentIndex = playlist.length - 1;
             if (currentIndex >= playlist.length) currentIndex = 0;
 
-            // 4. Đổi video và đảm bảo bật tiếng
+            // 4. Đổi video
             setTimeout(() => {
                 video.src = playlist[currentIndex];
                 video.muted = false;
                 video.play();
-                label.innerText = `PLAYING: TAPE #${currentIndex + 1}`;
             }, 80);
         }
     </script>
