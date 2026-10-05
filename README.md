@@ -10,7 +10,7 @@
 
 [![GitHub](https://img.shields.io/badge/GitHub-Profile-111827?style=for-the-badge&logo=github&logoColor=white)](https://github.com/Phieeny)
 [![Horror Tape](https://img.shields.io/badge/Horror%20Tape-Visit-ff4fd8?style=for-the-badge&logo=googlechrome&logoColor=white)](https://phieeny.github.io/Phieeny/)
-[![Profile Views](https://img.shields.io/badge/PROFILE_VIEWS-3%2C478%2C998-8b5cff?style=for-the-badge)](https://github.com/Phieeny)
+[![Profile Views](https://img.shields.io/badge/PROFILE_VIEWS-3%2C480%2C121-8b5cff?style=for-the-badge)](https://github.com/Phieeny)
 
 <br><br>
 
