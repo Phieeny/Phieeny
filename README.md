@@ -1,6 +1,6 @@
 <div align="center">
 
-# ✦ PHIEENY
+# ✦
 
 ### Creative Developer · Digital Artist · Curious Mind
 
